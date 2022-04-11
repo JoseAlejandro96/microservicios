@@ -1,8 +1,9 @@
 package com.joshservice.customer.service;
 
+import com.joshservice.clients.fraud.FraudCheckResponse;
+import com.joshservice.clients.fraud.FraudClient;
 import com.joshservice.customer.entities.Customer;
 import com.joshservice.customer.models.CustomerRegistrationRequest;
-import com.joshservice.customer.models.FraudCheckResponse;
 import com.joshservice.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ public class CustomerService{
 
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -29,11 +31,9 @@ public class CustomerService{
         // store customer in db
         customerRepository.saveAndFlush(customer);
         // check if fraudster
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
+
         if(fraudCheckResponse.isFraudster()){
             throw new IllegalStateException("fraudster");
         }
