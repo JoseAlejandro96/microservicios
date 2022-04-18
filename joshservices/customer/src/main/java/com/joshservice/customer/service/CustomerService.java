@@ -33,23 +33,23 @@ public class CustomerService{
         customerRepository.saveAndFlush(customer);
         // check if fraudster
         log.info(customer.toString());
-//        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
-//
-//        if(fraudCheckResponse.isFraudster()){
-//            throw new IllegalStateException("fraudster");
-//        }
-//
-//        NotificationRequest notificationRequest = new NotificationRequest(
-//                customer.getId(),
-//                customer.getEmail(),
-//                String.format("Hi %s, welcome to the system...",
-//                        customer.getFirstName())
-//        );
-//
-//        rabbitMQMessageProducer.publish(
-//                notificationRequest,
-//                "internal.exchange",
-//                "internal.notification.routing-key"
-//            );
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
+
+        if(fraudCheckResponse.isFraudster()){
+            throw new IllegalStateException("fraudster");
+        }
+
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to the system...",
+                        customer.getFirstName())
+        );
+
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+            );
     }
 }

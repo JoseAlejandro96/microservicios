@@ -7,8 +7,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(
     scanBasePackages = {
-            "com.joshservice.notification",
-            "com.joshservice.amqp"
+            "com.joshservice.customer",
+            "com.joshservice.amqp",
     }
 )
 @EnableEurekaClient
