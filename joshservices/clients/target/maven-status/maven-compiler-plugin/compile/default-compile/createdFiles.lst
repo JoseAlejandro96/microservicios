@@ -1,0 +1,4 @@
+com\joshservice\clients\notification\NotificationClient.class
+com\joshservice\clients\fraud\FraudClient.class
+com\joshservice\clients\fraud\FraudCheckResponse.class
+com\joshservice\clients\notification\NotificationRequest.class
