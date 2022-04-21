@@ -1,0 +1,8 @@
+com\joshservice\notification\NotificationController.class
+com\joshservice\notification\NotificationConfig.class
+com\joshservice\notification\NotificationRepository.class
+com\joshservice\notification\rabbitmq\NotificationConsumer.class
+com\joshservice\notification\Notification$NotificationBuilder.class
+com\joshservice\notification\NotificationApplication.class
+com\joshservice\notification\Notification.class
+com\joshservice\notification\NotificationService.class

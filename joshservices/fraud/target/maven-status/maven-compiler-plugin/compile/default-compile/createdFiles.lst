@@ -1,0 +1,6 @@
+com\joshcode\fraud\FraudCheckHistory$FraudCheckHistoryBuilder.class
+com\joshcode\fraud\FraudController.class
+com\joshcode\fraud\FraudCheckHistoryRepository.class
+com\joshcode\fraud\FraudApplication.class
+com\joshcode\fraud\FraudCheckHistory.class
+com\joshcode\fraud\FraudCheckHistoryService.class
